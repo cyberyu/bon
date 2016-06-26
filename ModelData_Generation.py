@@ -57,6 +57,8 @@ sparse_clm_file = "D:\\BonSecours\\3weeks\\db_dump\\new_data\\claim_query_result
 sparse_clm_trns_file = "D:\\BonSecours\\3weeks\\db_dump\\new_data\\claim_query_trns_result.txt"
 
 dense_label_file = "D:\\BonSecours\\3weeks\\db_dump\\new_data\\claim_labels.csv"
+dense_label_file_binary_unsuc_suc = "D:\\BonSecours\\3weeks\\db_dump\\new_data\\claim_labels_binary_unsuccessful_successful.csv"
+
 
 
 #--------------------------LOADING DIAGNOSIS CODE FILE-------------------------------------
@@ -385,7 +387,7 @@ for line in csv_clm_trns_reader:
     matrix_admssn_src_cd[clm_id_dict[clm_key]-1,colid_admssn_src_cd_dict[admssn_src_cd]-1] = 1
     matrix_patnt_stts_cd[clm_id_dict[clm_key]-1,colid_patnt_stts_cd_dict[patnt_stts_cd]-1] = 1
 
-print (matrix_diag.get_shape)           # 119159x6609
+print (matrix_diag.get_dense_label_file)           # 119159x6609
 print (matrix_proc.get_shape)           # 119159x4974
 print (matrix_prvd.get_shape)           # 119159x4919
 print (matrix_srvc.get_shape)           # 119159x2

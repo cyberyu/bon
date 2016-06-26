@@ -1,5 +1,6 @@
 __author__ = 'shyu'
 
+
 import pickle
 import sklearn
 import scipy
@@ -24,13 +25,28 @@ print('The scikit-learn version is {}.'.format(sklearn.__version__))
 model_data = pickle.load(mat_train)
 label_data = pickle.load(mat_label)
 
-for loop in range(1,10):
 
-    train_ind = np.random.choice(79720,55804, replace=False)
-    test_ind = set(range(1,79720))-set(train_ind)
 
-    train_ind = np.asarray(train_ind)
-    test_ind = np.asarray(list(test_ind))
+indices_unsuc = [i for i, x in enumerate(label_data.getcol(0).data) if ((x == 1.0) | (x ==2.0))]
+indices_suc = [i for i, x in enumerate(label_data.getcol(0).data) if ((x == 3.0) | (x ==4.0))]
+
+
+model_unsuc = model_data[indices_unsuc]
+label_unsuc = label_data[indices_unsuc]
+
+model_suc = model_data[indices_suc]
+label_suc = label_data[indices_suc]
+
+
+# for unsuccessful
+
+for loop in range(1,11):
+
+    train_unsuc_ind = np.random.choice(16678,11675, replace=False)
+    test_unsuc_ind = set(range(0,16679))-set(train_unsuc_ind)
+
+    train_unsuc_ind = np.asarray(train_unsuc_ind)
+    test_ind = np.asarray(list(test_unsuc_ind))
 
     model_train_data = model_data[train_ind,]
     model_test_data = model_data[test_ind,]
@@ -69,6 +85,7 @@ for loop in range(1,10):
     tot_perf.append(accuracy_score(y_pred, y_test))
     print (accuracy_score(y_pred, y_test))
 print (tot_perf)
+
 
 
 

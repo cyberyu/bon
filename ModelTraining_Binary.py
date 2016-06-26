@@ -24,7 +24,16 @@ print('The scikit-learn version is {}.'.format(sklearn.__version__))
 model_data = pickle.load(mat_train)
 label_data = pickle.load(mat_label)
 
-for loop in range(1,10):
+# change to binary case
+for loop in range(0,label_data.shape[0]):
+    v = int(label_data[loop,0])
+    print (v)
+    if ((v == 1) | (v==2)):
+        label_data[loop,0] = 1
+    else:
+        label_data[loop,0] = 2
+
+for loop in range(1,11):
 
     train_ind = np.random.choice(79720,55804, replace=False)
     test_ind = set(range(1,79720))-set(train_ind)
